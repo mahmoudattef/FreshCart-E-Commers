@@ -1,0 +1,51 @@
+<section class=" bg-main-light rounded-4 shadow p-4 my-2 w-75 mx-auto">
+
+  @if (numItem !==0)
+  {
+    <div class=" d-flex align-items-center justify-content-between ">
+      <h1 class=" h2">Show Cart</h1>
+
+  <button (click)="clearBox()" class="btn btn-outline-danger btn-sm "> Clear Cart</button>
+    </div>
+  <p class="text-main">Total Cart Price : {{cartDetails.totalCartPrice | currency:'GBP' }}</p>
+
+
+  @for (item of cartDetails.products; track item.product.id ) {
+    <div class="row mb-1 border-bottom m-0">
+      <div class="col-md-1">
+        <div>
+          <img [src]="item.product.imageCover" class="w-100" [alt]="item.product.title">
+        </div>
+      </div>
+      <!-- info -->
+      <div class="col-md-11 d-flex align-items-center justify-content-between">
+        <div>
+          <h3 class="h5">{{item.product.title }}</h3>
+          <p class="text-main">Price: {{item.price}}</p>
+
+          <button (click)="confirmBox(item.product.id)" class="text-danger border-0  cr btn p-0 d-flex align-items-center justify-content-center" ><i class="fa-solid fa-trash"></i>
+            <h3 class="h6 mt-1 text-danger ms-2" >remove</h3>
+            </button>
+
+
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <span (click)="updateCount( item.product.id ,item.count+1)" class="text-main cr"><i class="fa-solid fa-circle-plus fa-2xl"></i></span>
+          <span>{{item.count}}</span>
+          <span (click)="updateCount( item.product.id ,item.count-1)"  class="text-main cr"><i class="fa-solid fa-circle-minus fa-2xl"></i></span>
+        </div>
+
+      </div>
+    </div>
+  }
+
+  <button [routerLink]="['/orders',cartDetails._id]" class="btn-main mt-2"> Orders</button>
+  }@else {
+    <img src="./assets/images/empty.png" class="w-25 m-auto d-block" alt="">
+    <h1 class="text-center text-main">
+      Cart Is Empty
+    </h1>
+  }
+
+</section>

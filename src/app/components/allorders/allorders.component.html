@@ -1,0 +1,37 @@
+<section class=" bg-main-light rounded-4 shadow p-4 my-2 w-75 mx-auto">
+
+  <div class=" d-flex align-items-center justify-content-between ">
+    <h1 class=" h2">Show Cart</h1>
+
+  </div>
+
+
+
+@for (item of Product; track $index) {
+  @for (ele of item.cartItems; track $index) {
+
+  <div class="row mb-1 border-bottom m-0">
+    <div class="col-md-1">
+      <div>
+        <img [src]="ele.product.imageCover" class="w-100" [alt]="ele.product.title">
+      </div>
+    </div>
+
+    <div class="col-md-11 d-flex align-items-center justify-content-between">
+      <div>
+        <h3 class="h5">{{ele.product.title}}</h3>
+        <p class="text-main">Price: {{ele.price}}</p>
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+  }
+}
+
+
+
+</section>
